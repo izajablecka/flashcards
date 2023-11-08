@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDecks } from "../../../api/api.js";
+import { getData } from "../../../api/api.js";
 import { Link } from "react-router-dom";
 
 function Decks() {
@@ -7,7 +7,7 @@ function Decks() {
 
   useEffect(() => {
     const controller = new AbortController();
-    getDecks(controller.signal).then(setDecks);
+    getData("decks", controller.signal).then(setDecks);
 
     return () => {
       controller.abort();
@@ -30,7 +30,7 @@ function Decks() {
           <h2>
             {name}, <span>{cards}</span>
           </h2>
-          <Link to={"/learning/:deckId"}>Learn Now</Link>
+          <Link to={`/learning/${id}`}>Learn Now</Link>
         </div>
       ))}
     </div>

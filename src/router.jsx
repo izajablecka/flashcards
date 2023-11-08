@@ -13,7 +13,7 @@ const router = createBrowserRouter([
         element: <Decks />,
       },
       {
-        path: "/learning",
+        path: "/learning/:deckId",
         element: <LearningWrapper />,
       },
     ],
