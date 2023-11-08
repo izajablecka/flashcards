@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getDecks } from "../../../api/api.js";
+import { Link } from "react-router-dom";
 
 function Decks() {
   const [decks, setDecks] = useState([]);
@@ -29,7 +30,7 @@ function Decks() {
           <h2>
             {name}, <span>{cards}</span>
           </h2>
-          <button>Learn Now</button>
+          <Link to={"/learning/:deckId"}>Learn Now</Link>
         </div>
       ))}
     </div>
