@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import Decks from "./components/decks/Decks.jsx";
-import Layout from "./components/layout/Layout.jsx";
+import Decks from "./assets/components/decks/Decks.jsx";
+import Layout from "./assets/components/layout/Layout.jsx";
 import LearningWrapper from "./assets/components/LearningWrapper.jsx";
 
 const router = createBrowserRouter([

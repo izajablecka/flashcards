@@ -1,14 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getData } from "../../api/api.js";
+import { getData, getDeckAndFlashcards } from "../../api/api.js";
+import Flashcard from "./flashcards/Flashcard.jsx";
 
 function LearningWrapper() {
   const { deckId } = useParams();
   const [deck, setDeck] = useState(null);
+  const [flashcards, setFlashcards] = useState([]);
 
   useEffect(() => {
     const controller = new AbortController();
-    getData(`decks/${deckId}`, controller.signal).then(setDeck);
+
+    getDeckAndFlashcards(deckId, controller.signal).then(
+      ([deckResponse, flashcardsResponse]) => {
+        setDeck(deckResponse);
+        setFlashcards(flashcardsResponse);
+      },
+    );
 
     return () => {
       controller.abort();
@@ -22,6 +30,10 @@ function LearningWrapper() {
   return (
     <div>
       Learning: {deckId} {deck.name} {deck.description}
+      <Flashcard
+        question={flashcards[0].question}
+        answer={flashcards[0].answer}
+      />
     </div>
   );
 }
